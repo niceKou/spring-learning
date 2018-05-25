@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+         http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>springExplore</artifactId>
         <groupId>com.niceKou.module</groupId>
@@ -12,12 +13,13 @@
     <artifactId>customTag</artifactId>
 
     <build>
+        <directory>${basedir}/target</directory>
+        <finalName>${project.artifactId}-${project.version}</finalName>
+        <sourceDirectory>${basedir}/src/main/java</sourceDirectory>
+        <outputDirectory>${basedir}/target/classes</outputDirectory>
         <resources>
             <resource>
-                <directory>src/main/java</directory>
-                <includes>
-                    <include>**/*.xsd</include>
-                </includes>
+                <directory>${basedir}/src/main/resources</directory>
             </resource>
         </resources>
         <testResources>
@@ -27,26 +29,23 @@
         </testResources>
     </build>
     <dependencies>
-
-        <!-- http://mvnrepository.com/artifact/org.springframework/spring-core -->
+        <!-- 引入 spring-core spring-context spring-beans  -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
             <version>4.3.0.RELEASE</version>
         </dependency>
-
-        <!-- http://mvnrepository.com/artifact/org.springframework/spring-beans -->
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-beans</artifactId>
-            <version>4.3.0.RELEASE</version>
-        </dependency>
-        <!-- http://mvnrepository.com/artifact/org.springframework/spring-context -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
             <version>4.3.0.RELEASE</version>
         </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId>
+            <version>4.3.0.RELEASE</version>
+        </dependency>
+
     </dependencies>
 
 </project>

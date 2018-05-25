@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:rpc="http://www.changsai.com/schema/rpc"
+       xsi:schemaLocation="
+           http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.changsai.com/schema/rpc
+           http://www.changsai.com/schema/rpc/rpc.xsd">
+
+    <rpc:registry id="myRegistry" address="tcp://10.0.3.8:8080/" protocol="redis"/>
+
+    <rpc:reference id="myReference" interfaceName="Test" cluster="8" loadBalance="loadBalance"  protocol="redis" retries="3"/>
+
+    <rpc:protocol name="myProtocol" host="10.0.3.8" port="9009" />
+    <rpc:protocol name="myProtocol" host="10.0.3.8" port="9009" />
+    <rpc:protocol name="myProtocol" host="10.0.3.8" port="9009" />
+
+    <rpc:service id="testService" interfaceName="Test" ref="com.niceKou.module.rpc.service.impl.FaceDancePkService.Impl" protocol="redis"/>
+
+
+</beans>

@@ -1,0 +1,50 @@
+package com.niceKou.module.main;
+
+import com.niceKou.module.rpc.config.ProtocolConfig;
+import com.niceKou.module.rpc.config.RegistryConfig;
+import com.niceKou.module.rpc.config.spring.ReferenceBean;
+import com.niceKou.module.rpc.config.spring.ServiceBean;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class MyBeanTest {
+    public static void main(String[] args) {
+        ApplicationContext context = new ClassPathXmlApplicationContext("classpath:spring-rpc.xml");
+        listAllSpringBeans(context);
+
+        RegistryConfig registry = context.getBean("myRegistry",RegistryConfig.class);
+        System.out.println(registry.toString());
+
+        ReferenceBean referenceBean = context.getBean("myReference",ReferenceBean.class);
+        System.out.println(referenceBean.toString());
+
+        ServiceBean serviceBean = context.getBean("testService",ServiceBean.class);
+        System.out.println(serviceBean.toString());
+
+    }
+
+    /**
+     * 获取Spring加载的所有bean
+     * @param context
+     */
+    private static void listAllSpringBeans(ApplicationContext context) {
+        String[] beanNames = context.getBeanDefinitionNames();
+        int allBeansCount = context.getBeanDefinitionCount();
+
+        System.out.println("\r\n");
+
+        System.out.println("所有beans的数量是：" + allBeansCount);
+        for (String beanName : beanNames) {
+            Class<?> beanType = context.getType(beanName);
+            Package beanPackage = beanType.getPackage();
+
+            Object bean = context.getBean(beanName);
+
+            System.out.println("BeanName:" + beanName);
+            System.out.println("Bean的类型：" + beanType);
+            System.out.println("Bean所在的包：" + beanPackage);
+
+            System.out.println("\r\n");
+        }
+    }
+}
