@@ -31,6 +31,7 @@ public class RpcBeanDefinitionParser implements BeanDefinitionParser {
         beanDefinition.setLazyInit(false);
         String id = element.getAttribute("id");
 
+        // 生成bean Id  注册Bean
         if ((id == null || id.length() == 0) && required) {
             String generatedBeanName = element.getAttribute("name");
             if (generatedBeanName == null || generatedBeanName.length() == 0) {
