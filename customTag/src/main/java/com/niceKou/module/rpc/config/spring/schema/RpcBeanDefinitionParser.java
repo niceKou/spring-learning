@@ -49,6 +49,7 @@ public class RpcBeanDefinitionParser implements BeanDefinitionParser {
                 throw new IllegalStateException("Duplicate spring bean id " + id);
             }
             // 注册Bean
+            System.out.println("registerBeanDefinition: id " + id + "getBeanClassName: " + beanDefinition.getBeanClassName());
             parserContext.getRegistry().registerBeanDefinition(id,beanDefinition);
             beanDefinition.getPropertyValues().addPropertyValue("id", id);
         }
