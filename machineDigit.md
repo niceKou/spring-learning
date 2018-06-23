@@ -1,10 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
 
-<head>
-    <meta charset="utf-8" />
-    <title>原码, 反码, 补码 详解</title>
-</head>
+# 原码, 反码, 补码 详解
 
 <body>
     <div>
