@@ -4,11 +4,17 @@ import com.niceKou.module.rpc.config.ProtocolConfig;
 import com.niceKou.module.rpc.config.RegistryConfig;
 import com.niceKou.module.rpc.config.spring.ReferenceBean;
 import com.niceKou.module.rpc.config.spring.ServiceBean;
+import org.springframework.beans.factory.BeanFactory;
+import org.springframework.beans.factory.xml.XmlBeanFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.core.io.ClassPathResource;
 
 public class MyBeanTest {
     public static void main(String[] args) {
+        // BeanFactroy采用的是延迟加载形式来注入Bean的，即只有在使用到某个Bean时(调用getBean())，才对该Bean进行加载实例化
+        BeanFactory factory = new XmlBeanFactory(new ClassPathResource("spring-rpc.xml"));
+        // 是在容器启动时，一次性创建了所有的Bean
         ApplicationContext context = new ClassPathXmlApplicationContext("classpath:spring-rpc.xml");
         listAllSpringBeans(context);
 
@@ -17,7 +23,7 @@ public class MyBeanTest {
 
         ReferenceBean referenceBean = context.getBean("myReference",ReferenceBean.class);
         System.out.println(referenceBean.toString());
-
+//
         ServiceBean serviceBean = context.getBean("testService",ServiceBean.class);
         System.out.println(serviceBean.toString());
 
